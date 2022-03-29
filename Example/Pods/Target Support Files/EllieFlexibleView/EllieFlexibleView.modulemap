@@ -1,0 +1,6 @@
+framework module EllieFlexibleView {
+  umbrella header "EllieFlexibleView-umbrella.h"
+
+  export *
+  module * { export * }
+}

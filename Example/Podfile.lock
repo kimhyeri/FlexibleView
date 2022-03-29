@@ -1,0 +1,16 @@
+PODS:
+  - EllieFlexibleView (1.0.0)
+
+DEPENDENCIES:
+  - EllieFlexibleView (from `../AffineTransformView`)
+
+EXTERNAL SOURCES:
+  EllieFlexibleView:
+    :path: "../AffineTransformView"
+
+SPEC CHECKSUMS:
+  EllieFlexibleView: 8c7336700e7a14c35d2a67b0a6de621b8bb5eae7
+
+PODFILE CHECKSUM: 6490b5d678557e708eaff1f7a46dad96df7f6713
+
+COCOAPODS: 1.11.2
