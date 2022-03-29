@@ -14,7 +14,7 @@ public class ATView: UIView {
 
 // up down left right
 extension ATView {
-    public func moveUp(y: CGFloat) {
+    public func moveDown(y: CGFloat) {
         self.transform = CGAffineTransform(a: 1,
                                            b: 0,
                                            c: 0,
@@ -23,7 +23,7 @@ extension ATView {
                                            ty: y)
     }
     
-    public func moveDown(y: CGFloat) {
+    public func moveUp(y: CGFloat) {
         self.transform = CGAffineTransform(a: 1,
                                            b: 0,
                                            c: 0,
@@ -51,6 +51,7 @@ extension ATView {
     }
 }
 
+// scale up
 extension ATView {
     public func scaleUp(value: CGFloat) {
         self.transform = CGAffineTransform(a: value,
@@ -62,6 +63,7 @@ extension ATView {
     }
 }
 
+// rotate
 extension ATView {
     public func rotateView(value: CGFloat) {
         self.transform = CGAffineTransform(a: cos(value),
@@ -73,8 +75,66 @@ extension ATView {
     }
 }
 
+// identity
 extension ATView {
     public func defaultView() {
         self.transform = .identity
+    }
+}
+
+// current postiion
+extension ATView {
+    // To get pre transform frame
+    var originalFrame: CGRect {
+        let currentTransform = transform
+        transform = .identity
+        let originalFrame = frame
+        transform = currentTransform
+        return originalFrame
+    }
+
+    // To get point offset from center
+    func centerOffset(_ point: CGPoint) -> CGPoint {
+        return CGPoint(x: point.x - center.x,
+                       y: point.y - center.y)
+    }
+
+    // To get point back relative to center
+    func pointRelativeToCenter(_ point: CGPoint) -> CGPoint {
+        return CGPoint(x: point.x + center.x,
+                       y: point.y + center.y)
+    }
+
+    // To get point relative to transformed coords
+    func newPointInView(_ point: CGPoint) -> CGPoint {
+        // get offset from center
+        let offset = centerOffset(point)
+        // get transformed point
+        let transformedPoint = offset.applying(transform)
+        // make relative to center
+        return pointRelativeToCenter(transformedPoint)
+    }
+
+    var newTopLeft: CGPoint {
+        return newPointInView(originalFrame.origin)
+    }
+
+    var newTopRight: CGPoint {
+        var point = originalFrame.origin
+        point.x = point.x + originalFrame.width
+        return newPointInView(point)
+    }
+
+    var newBottomLeft: CGPoint {
+        var point = originalFrame.origin
+        point.y = point.y + originalFrame.height
+        return newPointInView(point)
+    }
+
+    var newBottomRight: CGPoint {
+        var point = originalFrame.origin
+        point.x = point.x + originalFrame.width
+        point.y = point.y + originalFrame.height
+        return newPointInView(point)
     }
 }
