@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreGraphics
 
 public class ATView: UIView {
     
@@ -65,13 +66,35 @@ extension ATView {
 
 // rotate
 extension ATView {
-    public func rotateView(value: CGFloat) {
+    public func rotateViewClockwise(value: CGFloat) {
         self.transform = CGAffineTransform(a: cos(value),
                                            b: sin(value),
                                            c: -sin(value),
                                            d: cos(value),
                                            tx: 0,
                                            ty: 0)
+    }
+    
+    public func rotateViewAntiClockwise(value: CGFloat) {
+        self.transform = CGAffineTransform(a: cos(value),
+                                           b: -sin(value),
+                                           c: sin(value),
+                                           d: cos(value),
+                                           tx: 0,
+                                           ty: 0)
+    }
+}
+
+// combining transforms 
+extension ATView {
+    func caintingTransform() {
+        
+        
+        
+        
+        
+        
+        
     }
 }
 
