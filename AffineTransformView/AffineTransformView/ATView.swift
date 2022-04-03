@@ -87,15 +87,14 @@ extension ATView {
 
 // combining transforms 
 extension ATView {
-    func caintingTransform() {
-        
-        
-        
-        
-        
-        
-        
+    func combiningTransform(scale scaleValue: CGFloat, rotateClockwise rotateValue: CGFloat) {
+        self.transform.scaledBy(x: scaleValue, y: scaleValue).rotated(by: rotateValue)
     }
+    
+    func combiningTransform(rotateClockwise rotateValue: CGFloat, scale scaleValue: CGFloat) {
+        self.transform.rotated(by: rotateValue).scaledBy(x: scaleValue, y: scaleValue)
+    }
+
 }
 
 // identity
